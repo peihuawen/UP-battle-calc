@@ -1,0 +1,291 @@
+﻿<! doctype html>
+<html>
+<head>
+<title>BATTLE CALCULATOR</title>
+<script src="idtabs.js"></script>
+<script src="jquery.js"></script>
+<script src="battlecalcjs.js"></script>
+<link rel="stylesheet" type="text/css" href="battlecalccss.css">
+</head>
+<body>
+
+<center><table width="70%">
+  <tr>
+    <td style="padding:10px;background-color: #232323; color: #548b78; font-family: courier new; font-size:15px;letter-spacing: 2px;">BATTLE CALCULATOR ver 1.3<sup style="font-family: calibri; font-size: 10px;">BETA</sup></td>
+  </tr>
+  <tr>
+    <td style="background-color:#1d1d1d;padding: 10px;">
+      <center>
+               <table>
+          <tr>
+            <td>
+              <div class="avatar-wrapper">
+              <img src="icon.png" />
+              </div>
+            </td>
+            <td>
+              <table class="caltable" style="width: 400px;text-align: center;height: 120px;">
+                <tr>
+                  <td colspan="2">
+                    HP: <span id="hp">100</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    ATK: <span id="atk">10</span>
+                  </td>
+                  <td>
+                    DEF: <span id="def">10</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    REC: <span id="hea">10</span>
+                  </td>
+                  <td>
+                    SPD: <span style="color: #548b78;">2</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+        <center>
+          <table style="border-spacing: 10px;width:100%; border-collapse: separate;">
+            <tr>
+              <td>
+
+
+                <table class="caltable">
+                  <tr>
+                    <td colspan="3">
+                      <select id="Ultra" onchange="run()">
+                        <!--Call run() function-->
+                        <option value="0">ATTACK</option>
+                        <option value="0.5">BASIC ATTACK</option>
+                        <option value="2">SINGLE TARGET</option>
+                        <option value="1.5">AOE</option>
+                        <option value="1">AOE CC</option>
+                        <option value="1">LIFE STEAL ATK</option>
+                        <option value="0.5">LIFE STEAL HEAL</option>
+                      </select>
+
+                      <select id="debuff" onchange="run()">
+                        <!--Call run() function-->
+                        <option value="1">DEBUFF</option>
+                        <option value="0.5">WEAKEN</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      MODIFIER
+                    </td>
+                    <td>
+                      <select id="mod3" onchange="run()">
+                        <!--Call run() function-->
+                        <option value="1">BUFF</option>
+                        <option value="1.5">SELF BUFF</option>
+                        <option value="1.25">PARTY BUFF</option>
+                      </select>
+                    </td>
+                    <td>RAW OUTPUT</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span id="mod"></span>
+                    </td>
+                    <td><span id="buff1"></span></td>
+                    <td>
+                      <span id="deeps"></span>
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+              <td>
+
+
+                <table class="caltable">
+                  <tr>
+                    <td colspan="3">
+                      <select id="Heal" onchange="run2()">
+                        <!--Call run() function-->
+                        <option value="0">HEALING</option>
+                        <option value="0.5">BASIC HEAL</option>
+                        <option value="2">SINGLE TARGET</option>
+                        <option value="1.5">RESURRECTION</option>
+                        <option value="1">MASS RESURRECTION</option>
+                      </select>
+
+                      <select id="hdebuff" onchange="run2()">
+                        <!--Call run() function-->
+                        <option value="1">DEBUFF</option>
+                        <option value="0.5">POISON</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+
+                    <td>MODIFIER</td>
+                    <td>
+                      <select id="modh2" onchange="run2()">
+                        <!--Call run() function-->
+                        <option value="1">BUFF</option>
+                        <option value="1.5">SELF BUFF</option>
+                        <option value="1.25">PARTY BUFF</option>
+                      </select>
+                    </td>
+                    <td>OUTPUT</td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <span id="modh"></span>
+                    </td>
+                    <td><span id="hhbuff"></span></td>
+                    <td>
+                      <span id="heals"></span>
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <table class="caltable">
+                  <tr>
+                    <td>RAW OUTPUT</td>
+                    <td>TARGET DEF</td>
+                    <td>ADJUSTED OUTPUT</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div id="rawo"></div>
+                      <td>
+                        <input id="tard" type="text" value="0" onchange="run()" style="width: 100px;">
+                      </td>
+                      <td>
+                        <div id="adjo"></div>
+                      </td>
+                  </tr>
+                </table>
+                </td>
+                <td>
+
+
+                  <table class="caltable">
+                    <tr>
+                      <td colspan="4">
+                        <select id="Tank" onchange="run4()">
+                          <!--Call run() function-->
+                          <option value="1">DEFENSE</option>
+                          <option value="0.5">REFLECT DMG</option>
+                        </select>
+
+                        <select id="tandebuff" onchange="run4()">
+                          <!--Call run() function-->
+                          <option value="1">DEBUFF</option>
+                          <option value="0.5">BURN</option>
+                        </select>
+
+                        <select id="tanmod2" onchange="run4()">
+                          <!--Call run() function-->
+                          <option value="1">BUFF</option>
+                          <option value="1.5">SELF BUFF</option>
+                          <option value="1.25">PARTY BUFF</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+
+                      <td>
+                        MODIFIER</td>
+                      <td>TARGET DEF</td>
+                      <td>
+
+                        RAW OUTPUT
+                      </td>
+                      <td> ADJUSTED OUTPUT</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <span id="tanmod"></span>
+                      </td>
+                      <td>
+                        <input id="dtard" type="text" value="0" onchange="run4()">
+
+                      </td>
+                      <td>
+                        <span id="drawo"></span></td>
+                      <td>
+                        <span id="dadjo"></span>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <script>
+                    
+                  </script>
+
+                </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <table class="caltable">
+                  <tr>
+                    <td>HP</td>
+                    <td>
+                      <select id="def10" onchange="run10()" style="width: 100px;margin-left: -7px;">
+                        <!--Call run() function-->
+                        <option value="1">DEF TYPE</option>
+                        <option value="0.5">BASIC DEF</option>
+                        <option value="1.5">SELF BUFF</option>
+                        <option value="1.25">PARTY BUFF</option>
+                        <option value="1">REFLECT DEF</option>
+                        <option value="1">PARTY SHIELD</option>
+                      </select>
+
+
+                      <select id="tdeb" onchange="run10()" style="width: 80px;margin-left: -7px;">
+                        <!--Call run() function-->
+                        <option value="1">DEBUFF</option>
+                        <option value="0.5">BURN</option>
+                      </select>
+
+                    </td>
+                    <td>RAW ATK</td>
+                    <td>HP REMAINING</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input id="hp10" type="text" value="0" onchange="run10()">
+                    </td>
+                    <td>
+                      <div id="def210"></div>
+                    </td>
+
+                    <td>
+                      <input id="atk10" type="text" value="0" onchange="run10()">
+                    </td>
+                    <td>
+                      <div id="output10"></div>
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+
+          </table>
+
+
+        </center>
+        
+
+</body>
+</html>
